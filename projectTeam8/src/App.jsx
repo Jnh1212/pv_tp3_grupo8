@@ -7,7 +7,7 @@ function App() {
     <Layout>
       <ListaProyectos />
     </Layout>
-  );
+  );    
 }
 
 export default App;

@@ -182,3 +182,19 @@
     border-right-color: var(--border);
   }
 }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+header, footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+}

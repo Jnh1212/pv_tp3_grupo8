@@ -1,9 +1,9 @@
-const Nav = () => {
+const Nav = ({ onNavigate }) => {
     return (
         <nav>
-            <a href="#">Inicio</a> |{" "}
-            <a href="#">Proyectos</a> |{" "}
-            <a href="#">Perfil</a>
+            <a href="#inicio" onClick={(e) => { e.preventDefault(); onNavigate("inicio"); }}>Inicio</a> |{" "}
+            <a href="#proyectos" onClick={(e) => { e.preventDefault(); onNavigate("proyectos"); }}>Proyectos</a> |{" "}
+            <a href="#perfil" onClick={(e) => { e.preventDefault(); onNavigate("perfil"); }}>Perfil</a>
         </nav>
     );
 };
