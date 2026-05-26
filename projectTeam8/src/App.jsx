@@ -1,13 +1,13 @@
-import Layout from './components/Layout';
-import ListaProyectos from './components/ListaProyectos';
-import './App.css';
+import Layout from "./components/Layout";
+import ListaProyectos from "./components/ListaProyectos";
+import "./css/estilos.css";
 
 function App() {
   return (
     <Layout>
       <ListaProyectos />
     </Layout>
-  );    
+  );
 }
 
 export default App;
