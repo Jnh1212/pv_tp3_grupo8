@@ -1,5 +1,6 @@
 import { useState } from "react";
 import proyectoService from "../services/proyectoService";
+import ProyectoCard from "./ProyectoCard";
 proyectoService.obtenerProyectos();
 
 const ListaProyectos = () => {
@@ -41,15 +42,12 @@ const ListaProyectos = () => {
         <button onClick={agregarProyecto}>Agregar Proyecto</button>
       </div>
       <div className="presentacion">
-        {proyectosFiltrados.map((proy) => (
-          <div key={proy.id} className="proyecto">
-            <h3>{proy.titulo}</h3>
-            <p>Categoría: {proy.categoria}</p>
-            <p>Estado: {proy.estado}</p>
-            <button className="boton" onClick={() => eliminarProyecto(proy.id)}>
-              Eliminar
-            </button>
-          </div>
+        {proyectos.map((proy) => (
+          <ProyectoCard
+            key={proy.id}
+            proyecto={proy}
+            onEliminar={eliminarProyecto}
+          /> 
         ))}
       </div>
     </aside>
