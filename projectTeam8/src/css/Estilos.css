@@ -1,0 +1,143 @@
+/* Estilo general*/
+body {
+  background-color: blanchedalmond;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+/* Encabezado */
+header {
+  background-color: #87ceeb;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 10px;
+  color: black;
+}
+
+nav {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+nav :hover {
+  color: black;
+  font-size: 1.2em;
+}
+
+/*Seccion Principal*/
+
+.presentacion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+  padding: 25px;
+  gap: 45px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 25px;
+  color: black;
+}
+
+.controles {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding: 15px;
+}
+
+.controles input {
+  background-color: aquamarine;
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.controles input:hover {
+  background-color: #87ceeb;
+  cursor: pointer;
+}
+
+button {
+  background-color: #87ceeb;
+  color: grey;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #6bb1f7;
+  transform: scale(1.05);
+}
+
+.proyecto {
+  display: block;
+  text-align: center;
+  flex-direction: column;
+  background-color: rgb(17, 227, 171);
+  border-width: 7px 9px;
+  border-style: solid;
+  border-color: rgba(255, 1, 1, 0.088);
+  padding: 10px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.proyecto:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #87ceeb;
+  cursor: pointer;
+}
+
+h3 {
+  text-align: center;
+}
+
+.proyecto .boton {
+  margin-top: 10px;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.proyecto .boton:hover {
+  background-color: #ee5253;
+  transform: scale(1.05);
+}
+
+/* Pie de página */
+footer {
+  background-color: #6bb1f7;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}

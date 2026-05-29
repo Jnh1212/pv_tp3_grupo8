@@ -1,11 +1,37 @@
-const Nav = () => {
-    return (
-        <nav>
-            <a href="#">Inicio</a> |{" "}
-            <a href="#">Proyectos</a> |{" "}
-            <a href="#">Perfil</a>
-        </nav>
-    );
+const Nav = ({ onNavigate }) => {
+  return (
+    <nav>
+      <a
+        href="#inicio"
+        onClick={(e) => {
+          e.preventDefault();
+          onNavigate("inicio");
+        }}
+      >
+        Inicio
+      </a>{" "}
+      |{" "}
+      <a
+        href="#proyectos"
+        onClick={(e) => {
+          e.preventDefault();
+          onNavigate("proyectos");
+        }}
+      >
+        Proyectos
+      </a>{" "}
+      |{" "}
+      <a
+        href="#perfil"
+        onClick={(e) => {
+          e.preventDefault();
+          onNavigate("perfil");
+        }}
+      >
+        Perfil
+      </a>
+    </nav>
+  );
 };
 
 export default Nav;
