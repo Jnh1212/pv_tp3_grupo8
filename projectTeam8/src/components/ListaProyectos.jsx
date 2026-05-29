@@ -42,12 +42,12 @@ const ListaProyectos = () => {
         <button onClick={agregarProyecto}>Agregar Proyecto</button>
       </div>
       <div className="presentacion">
-        {proyectos.map((proy) => (
+        {proyectosFiltrados.map((proy) => (
           <ProyectoCard
             key={proy.id}
             proyecto={proy}
             onEliminar={eliminarProyecto}
-          /> 
+          />
         ))}
       </div>
     </aside>
