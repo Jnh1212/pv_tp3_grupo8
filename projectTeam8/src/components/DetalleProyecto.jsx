@@ -3,44 +3,57 @@ const DetalleProyecto = ({ proyecto, onVolver }) => {
     return <p>Seleccioná un proyecto para ver los detalles.</p>;
   }
 
+  // 👇 Desestructuración de las props del proyecto
+  const {
+    titulo,
+    fechaInicio,
+    categoria,
+    estado,
+    descripcion,
+    descripcion2,
+    recursoGitHub,
+    recursoDrive,
+    recursoPDF,
+    equipo,
+  } = proyecto;
+
   return (
     <div className="detalle_proyecto">
       <button className="boton_volver" onClick={onVolver}>
         ← Volver a la lista
       </button>
-      <h2>{proyecto.titulo}</h2>
+      <h2>{titulo}</h2>
       <p>
-        <strong>Fecha de inicio:</strong>{" "}
-        {proyecto.fechaInicio || "No especificada"}
+        <strong>Fecha de inicio:</strong> {fechaInicio || "No especificada"}
       </p>
       <p>
-        <strong>Categoría:</strong> {proyecto.categoria}
+        <strong>Categoría:</strong> {categoria}
       </p>
       <p>
-        <strong>Estado:</strong> {proyecto.estado}
+        <strong>Estado:</strong> {estado}
       </p>
 
       <h3>Descripción extendida</h3>
-      <p>{proyecto.descripcion || "Descripción no disponible."}</p>
-      <p>{proyecto.descripcion2 || "Segundo párrafo de descripción."}</p>
+      <p>{descripcion || "Descripción no disponible."}</p>
+      <p>{descripcion2 || "Segundo párrafo de descripción."}</p>
 
       <h3>Recursos y materiales</h3>
       <ul>
         <li>
-          <a href={proyecto.recursoGitHub || "#"}>Repositorio GitHub</a>
+          <a href={recursoGitHub || "#"}>Repositorio GitHub</a>
         </li>
         <li>
-          <a href={proyecto.recursoDrive || "#"}>Google Drive</a>
+          <a href={recursoDrive || "#"}>Google Drive</a>
         </li>
         <li>
-          <a href={proyecto.recursoPDF || "#"}>Documento PDF</a>
+          <a href={recursoPDF || "#"}>Documento PDF</a>
         </li>
       </ul>
 
       <h3>Equipo de trabajo</h3>
       <ul>
-        {proyecto.equipo &&
-          proyecto.equipo.map((miembro, index) => (
+        {equipo &&
+          equipo.map((miembro, index) => (
             <li key={index}>
               <strong>{miembro.nombre}</strong> - {miembro.rol}
             </li>
