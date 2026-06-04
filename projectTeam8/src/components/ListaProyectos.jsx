@@ -1,6 +1,7 @@
 import { useState } from "react";
 import proyectoService from "../services/proyectoService";
 import ProyectoCard from "./ProyectoCard";
+import RegistroActividad from "./RegistroActividad";
 proyectoService.obtenerProyectos();
 
 const ListaProyectos = () => {
@@ -8,6 +9,7 @@ const ListaProyectos = () => {
     proyectoService.obtenerProyectos(),
   );
   const [busqueda, setBusqueda] = useState("");
+  const [ultimaActualizacion, setUltimaActualizacion] = useState("");
   const eliminarProyecto = (id) => {
     proyectoService.eliminarProyecto(id);
     const nuevaLista = proyectos.filter((proy) => proy.id !== id);
@@ -50,6 +52,7 @@ const ListaProyectos = () => {
           />
         ))}
       </div>
+      <RegistroActividad fechaHora={ultimaActualizacion} />
     </aside>
   );
 };
