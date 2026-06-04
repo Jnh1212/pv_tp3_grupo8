@@ -3,6 +3,7 @@ import proyectoService from "../services/proyectoService";
 import ProyectoCard from "./ProyectoCard";
 import RegistroActividad from "./RegistroActividad";
 proyectoService.obtenerProyectos();
+import DetalleProyecto from "./DetalleProyecto";
 
 const ListaProyectos = () => {
   const [proyectos, setProyectos] = useState(
@@ -10,6 +11,7 @@ const ListaProyectos = () => {
   );
   const [busqueda, setBusqueda] = useState("");
   const [ultimaActualizacion, setUltimaActualizacion] = useState("");
+  const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
   const eliminarProyecto = (id) => {
     proyectoService.eliminarProyecto(id);
     const nuevaLista = proyectos.filter((proy) => proy.id !== id);
@@ -22,18 +24,42 @@ const ListaProyectos = () => {
       titulo: "Nuevo Proyecto",
       categoria: "General",
       estado: "Pendiente",
+      fechaInicio: new Date().toLocaleDateString(),
+      descripcion: "Descipcion del nuevo proyecto.",
+      descripcion2: "Segundo parrafo de descripcion.",
+      recursoGithub: "#",
+      recursoDrive: "#",
+      recursoPDF: "#",
+      equipo: [],
     };
     proyectoService.agregarProyecto(nuevo);
     setProyectos([...proyectos, nuevo]);
   };
+  // Función para ver detalle (NUEVO)
+  const verDetalle = (proyecto) => {
+    console.log("Click en ver detalle, proyecto:", proyecto.titulo);
+    setProyectoSeleccionado(proyecto);
+  };
 
+  // Función para volver a la lista (NUEVO)
+  const volver = () => {
+    setProyectoSeleccionado(null);
+  };
   const proyectosFiltrados = proyectos.filter((p) =>
     p.titulo.toLowerCase().includes(busqueda.toLowerCase()),
   );
 
+  if (proyectoSeleccionado) {
+    return (
+      <main>
+        <DetalleProyecto proyecto={proyectoSeleccionado} onVolver={volver} />
+      </main>
+    );
+  }
+
   return (
-    <aside>
-      <h2>Lista de Proyectos</h2>
+    <main>
+      <h2 className="titulo">Lista de Proyectos </h2>
       <div className="controles">
         <input
           type="text"
@@ -43,17 +69,20 @@ const ListaProyectos = () => {
         />
         <button onClick={agregarProyecto}>Agregar Proyecto</button>
       </div>
+
       <div className="presentacion">
         {proyectosFiltrados.map((proy) => (
           <ProyectoCard
             key={proy.id}
             proyecto={proy}
             onEliminar={eliminarProyecto}
+            onVerDetalle={() => verDetalle(proy)}
           />
         ))}
       </div>
       <RegistroActividad fechaHora={ultimaActualizacion} />
-    </aside>
+
+    </main>
   );
 };
 
