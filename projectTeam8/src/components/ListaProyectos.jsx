@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import proyectoService from "../services/proyectoService";
 import ProyectoCard from "./ProyectoCard";
 import RegistroActividad from "./RegistroActividad";
@@ -12,6 +12,12 @@ const ListaProyectos = () => {
   const [busqueda, setBusqueda] = useState("");
   const [ultimaActualizacion, setUltimaActualizacion] = useState("");
   const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
+
+  useEffect(() => {
+  const fechaHoraActual = new Date().toLocaleString();
+  setUltimaActualizacion(fechaHoraActual);
+  }, [proyectos]);
+
   const eliminarProyecto = (id) => {
     proyectoService.eliminarProyecto(id);
     const nuevaLista = proyectos.filter((proy) => proy.id !== id);
