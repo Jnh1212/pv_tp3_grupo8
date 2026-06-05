@@ -4,6 +4,7 @@ import ProyectoCard from "./ProyectoCard";
 import RegistroActividad from "./RegistroActividad";
 proyectoService.obtenerProyectos();
 import DetalleProyecto from "./DetalleProyecto";
+import FormularioProyecto from "./FormularioProyecto";
 
 const ListaProyectos = () => {
   const [proyectos, setProyectos] = useState(
@@ -14,9 +15,14 @@ const ListaProyectos = () => {
   const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
 
   const isFirstRender = useRef(true);
+  const isFilterChange = useRef(false);
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
+      return;
+    }
+    if (isFilterChange.current) {
+      isFilterChange.current = false;
       return;
     }
     setUltimaActualizacion(new Date().toLocaleString());
@@ -27,33 +33,22 @@ const ListaProyectos = () => {
     const nuevaLista = proyectos.filter((proy) => proy.id !== id);
     setProyectos(nuevaLista);
   };
-
-  const agregarProyecto = () => {
-    const nuevo = {
-      id: Date.now(),
-      titulo: "Nuevo Proyecto",
-      categoria: "General",
-      estado: "Pendiente",
-      fechaInicio: new Date().toLocaleDateString(),
-      descripcion: "Descipcion del nuevo proyecto.",
-      descripcion2: "Segundo parrafo de descripcion.",
-      recursoGithub: "#",
-      recursoDrive: "#",
-      recursoPDF: "#",
-      equipo: [],
-    };
+  const handleAgregar = (nuevo) => {
     proyectoService.agregarProyecto(nuevo);
     setProyectos([...proyectos, nuevo]);
   };
-  // Función para ver detalle (NUEVO)
+  // Función para ver detalle
   const verDetalle = (proyecto) => {
-    console.log("Click en ver detalle, proyecto:", proyecto.titulo);
     setProyectoSeleccionado(proyecto);
   };
 
-  // Función para volver a la lista (NUEVO)
+  // Función para volver a la lista
   const volver = () => {
     setProyectoSeleccionado(null);
+  };
+  const handleBusquedaChange = (e) => {
+    isFilterChange.current = true;
+    setBusqueda(e.target.value);
   };
 
   const proyectosFiltrados = proyectos.filter((p) =>
@@ -76,10 +71,11 @@ const ListaProyectos = () => {
           type="text"
           placeholder="Buscar proyecto..."
           value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
+          onChange={handleBusquedaChange}
         />
-        <button onClick={agregarProyecto}>Agregar Proyecto</button>
       </div>
+
+      <FormularioProyecto onAgregar={handleAgregar} />
 
       <div className="presentacion">
         {proyectosFiltrados.map((proy) => (

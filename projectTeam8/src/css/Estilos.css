@@ -37,14 +37,9 @@ nav :hover {
   font-size: 1.2em;
 }
 
-/*Seccion Principal*/
-
-.presentacion {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 300px);
-  justify-content: center;
-  padding: 25px;
-  gap: 45px;
+main {
+  padding: 20px;
+  min-height: 80vh;
 }
 
 h2 {
@@ -53,6 +48,18 @@ h2 {
   color: black;
 }
 
+h3 {
+  text-align: center;
+}
+
+/*Seccion Principal*/
+.titulo {
+  text-align: center;
+  font-size: 25px;
+  color: #333;
+  margin-bottom: 20px;
+}
+/* Controles */
 .controles {
   display: flex;
   justify-content: center;
@@ -68,13 +75,14 @@ h2 {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  color: black;
 }
 
 .controles input:hover {
   background-color: #87ceeb;
   cursor: pointer;
 }
-
+/*Botones Generales*/
 button {
   background-color: #87ceeb;
   color: grey;
@@ -91,16 +99,25 @@ button:hover {
   transform: scale(1.05);
   color: black;
 }
+/* Presentacion*/
+
+.presentacion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  justify-content: center;
+  padding: 25px;
+  gap: 45px;
+}
 
 .proyecto {
-  display: block;
+  display: flex;
   text-align: center;
   flex-direction: column;
   background-color: rgb(17, 227, 171);
   border-width: 7px 9px;
   border-style: solid;
   border-color: rgba(255, 1, 1, 0.088);
-  padding: 10px;
+  padding: 20px;
   border-radius: 15px;
   transition: all 0.3s ease;
 }
@@ -111,11 +128,40 @@ button:hover {
   background-color: #87ceeb;
   cursor: pointer;
 }
-
-h3 {
-  text-align: center;
+/*Botones*/
+.boton_eliminar {
+  margin-top: 10px;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+.boton_eliminar:hover {
+  background-color: #ee5253;
+  transform: scale(1.05);
+}
+
+.boton_detalle {
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: #6bb1f7;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.boton_detalle:hover {
+  background-color: #4a90d9;
+  transform: scale(1.05);
+}
+/*detalle proyecto*/
 .detalle_proyecto {
   background-color: blanchedalmond;
   padding: 20px;
@@ -158,39 +204,6 @@ h3 {
   text-decoration: underline;
 }
 
-.boton_eliminar {
-  margin-top: 10px;
-  background-color: #ff6b6b;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.boton_eliminar:hover {
-  background-color: #ee5253;
-  transform: scale(1.05);
-}
-
-.boton_detalle {
-  margin-top: 10px;
-  margin-left: 10px;
-  background-color: #6bb1f7;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.boton_detalle:hover {
-  background-color: #4a90d9;
-  transform: scale(1.05);
-}
-
 .boton_volver {
   background-color: rgb(17, 227, 171);
   color: grey;
@@ -206,16 +219,84 @@ h3 {
   background-color: #6bb1f7;
 }
 
-main {
+/* Formulario Proyecto */
+.formulario-proyecto {
+  background-color: bisque;
   padding: 20px;
-  min-height: 80vh;
+  margin: 10px auto;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
-.titulo {
+.formulario-proyecto h3 {
   text-align: center;
-  font-size: 25px;
   color: #333;
   margin-bottom: 20px;
+}
+
+.formulario-proyecto input,
+.formulario-proyecto select,
+.formulario-proyecto textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.formulario-proyecto select {
+  cursor: pointer;
+}
+
+.formulario-proyecto input:focus,
+.formulario-proyecto select:focus,
+.formulario-proyecto textarea:focus {
+  border-color: #87ceeb;
+  box-shadow: 0 0 5px rgba(135, 206, 235, 0.5);
+}
+
+.formulario-proyecto textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.formulario-proyecto button {
+  width: 100%;
+  background-color: #87ceeb;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.formulario-proyecto button:hover {
+  color: black;
+  background-color: #6bb1f7;
+  transform: scale(1.02);
+}
+
+/* Registro Actividad */
+.registro-actividad {
+  margin-top: 30px;
+  padding: 15px;
+  text-align: center;
+  background-color: #e8f4f8;
+  border-radius: 8px;
+  border-left: 4px solid #87ceeb;
+}
+
+.registro-actividad p {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  font-style: italic;
 }
 
 /* Pie de página */
