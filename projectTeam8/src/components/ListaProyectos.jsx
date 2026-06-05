@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import proyectoService from "../services/proyectoService";
 import ProyectoCard from "./ProyectoCard";
 import RegistroActividad from "./RegistroActividad";
@@ -13,9 +13,13 @@ const ListaProyectos = () => {
   const [ultimaActualizacion, setUltimaActualizacion] = useState("");
   const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
 
+  const isFirstRender = useRef(true);
   useEffect(() => {
-  const fechaHoraActual = new Date().toLocaleString();
-  setUltimaActualizacion(fechaHoraActual);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    setUltimaActualizacion(new Date().toLocaleString());
   }, [proyectos]);
 
   const eliminarProyecto = (id) => {
@@ -51,6 +55,7 @@ const ListaProyectos = () => {
   const volver = () => {
     setProyectoSeleccionado(null);
   };
+
   const proyectosFiltrados = proyectos.filter((p) =>
     p.titulo.toLowerCase().includes(busqueda.toLowerCase()),
   );
@@ -86,8 +91,9 @@ const ListaProyectos = () => {
           />
         ))}
       </div>
-      <RegistroActividad fechaHora={ultimaActualizacion} />
-
+      {ultimaActualizacion && (
+        <RegistroActividad fechaHora={ultimaActualizacion} />
+      )}
     </main>
   );
 };
