@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import "./../css/estilos.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-const ProyectoCard = ({ proyecto, onEliminar, onVerDetalle }) => {
+const ProyectoCard = ({ proyecto, onEliminar }) => {
   const { titulo, categoria, estado, id } = proyecto;
 
   return (
@@ -15,12 +16,16 @@ const ProyectoCard = ({ proyecto, onEliminar, onVerDetalle }) => {
         <Card.Text>
           <strong>Estado:</strong> {estado}
         </Card.Text>
-        <Button className="me-2" variant="danger" onClick={() => onEliminar(id)}>
+        <Button
+          className="me-2"
+          variant="danger"
+          onClick={() => onEliminar(id)}
+        >
           Eliminar
         </Button>
-        <Button variant="primary" onClick={onVerDetalle}>
-        Ver detalle
-        </Button>
+        <Link to={`/proyectos/${id}`}>
+          <Button variant="primary">Ver detalle</Button>
+        </Link>
       </Card.Body>
     </Card>
   );

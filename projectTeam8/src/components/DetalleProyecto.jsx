@@ -1,65 +1,75 @@
-const DetalleProyecto = ({ proyecto, onVolver }) => {
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import proyectoService from "../services/proyectoService";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+
+const DetalleProyecto = () => {
+  const { id } = useParams();
+  const [proyecto, setProyecto] = useState(null);
+
+  useEffect(() => {
+    const proyectos = proyectoService.obtenerProyectos();
+    const encontrado = proyectos.find((p) => p.id === parseInt(id));
+    setProyecto(encontrado);
+  }, [id]);
+
   if (!proyecto) {
-    return <p>Seleccioná un proyecto para ver los detalles.</p>;
+    return <p>Proyecto no encontrado</p>;
   }
 
-  // 👇 Desestructuración de las props del proyecto
-  const {
-    titulo,
-    fechaInicio,
-    categoria,
-    estado,
-    descripcion,
-    descripcion2,
-    recursoGitHub,
-    recursoDrive,
-    recursoPDF,
-    equipo,
-  } = proyecto;
-
   return (
-    <div className="detalle_proyecto">
-      <button className="boton_volver" onClick={onVolver}>
-        ← Volver a la lista
-      </button>
-      <h2>{titulo}</h2>
+    <Container className="mt-4">
+      <Link to="/proyectos">
+        <Button variant="secondary" className="mb-3">
+          ← Volver a la lista
+        </Button>
+      </Link>
+      <h2>{proyecto.titulo}</h2>
       <p>
-        <strong>Fecha de inicio:</strong> {fechaInicio || "No especificada"}
+        <strong>Fecha de inicio:</strong>{" "}
+        {proyecto.fechaInicio || "No especificada"}
       </p>
       <p>
-        <strong>Categoría:</strong> {categoria}
+        <strong>Categoría:</strong> {proyecto.categoria}
       </p>
       <p>
-        <strong>Estado:</strong> {estado}
+        <strong>Estado:</strong> {proyecto.estado}
       </p>
 
       <h3>Descripción extendida</h3>
-      <p>{descripcion || "Descripción no disponible."}</p>
-      <p>{descripcion2 || "Segundo párrafo de descripción."}</p>
+      <p>{proyecto.descripcion || "Descripción no disponible."}</p>
+      <p>{proyecto.descripcion2 || "Segundo párrafo de descripción."}</p>
 
       <h3>Recursos y materiales</h3>
       <ul>
         <li>
-          <a href={recursoGitHub || "#"}>Repositorio GitHub</a>
+          <a href={proyecto.recursoGitHub || "#"} target="_blank">
+            Repositorio GitHub
+          </a>
         </li>
         <li>
-          <a href={recursoDrive || "#"}>Google Drive</a>
+          <a href={proyecto.recursoDrive || "#"} target="_blank">
+            Google Drive
+          </a>
         </li>
         <li>
-          <a href={recursoPDF || "#"}>Documento PDF</a>
+          <a href={proyecto.recursoPDF || "#"} target="_blank">
+            Documento PDF
+          </a>
         </li>
       </ul>
 
       <h3>Equipo de trabajo</h3>
       <ul>
-        {equipo &&
-          equipo.map((miembro, index) => (
+        {proyecto.equipo &&
+          proyecto.equipo.map((miembro, index) => (
             <li key={index}>
               <strong>{miembro.nombre}</strong> - {miembro.rol}
             </li>
           ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 

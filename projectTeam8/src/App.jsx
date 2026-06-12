@@ -1,9 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import ListaProyectos from "./components/ListaProyectos";
-// Importamos tus joyas nuevas
 import Dashboard from "./views/Dashboard";
 import PerfilUsuario from "./views/PerfilUsuario";
+import DetalleProyecto from "./components/DetalleProyecto";
 import "./css/Estilos.css";
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
 
         {/* La pantalla vieja */}
         <Route path="/proyectos" element={<ListaProyectos />} />
+        <Route path="/proyectos/:id" element={<DetalleProyecto />} />
       </Routes>
     </Layout>
   );
