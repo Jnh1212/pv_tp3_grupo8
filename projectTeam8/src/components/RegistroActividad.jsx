@@ -1,3 +1,5 @@
+import Alert from "react-bootstrap/Alert";
+
 const RegistroActividad = ({ fechaHora }) => {
   if (!fechaHora) return null;
 
@@ -21,14 +23,9 @@ const RegistroActividad = ({ fechaHora }) => {
   const horaFormateada = `${horas}:${minutos}`;
 
   return (
-    <div
-      className="registro-actividad"
-      style={{ marginTop: "20px", textAlign: "center", color: "#555" }}
-    >
-      <p>
+    <Alert variant="info" className="mt-3">
         Última actualización: {fechaFormateada} - {horaFormateada}
-      </p>
-    </div>
+    </Alert>
   );
 };
 

@@ -4,7 +4,7 @@ import ListaProyectos from "./components/ListaProyectos";
 // Importamos tus joyas nuevas
 import Dashboard from "./views/Dashboard";
 import PerfilUsuario from "./views/PerfilUsuario";
-import "./css/estilos.css";
+import "./css/Estilos.css";
 
 function App() {
   return (

@@ -1,24 +1,28 @@
 import "./../css/estilos.css";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 const ProyectoCard = ({ proyecto, onEliminar, onVerDetalle }) => {
   const { titulo, categoria, estado, id } = proyecto;
 
   return (
-    <div className="proyecto">
-      <h3>{titulo}</h3>
-      <p>
-        <strong>Categoría:</strong> {categoria}
-      </p>
-      <p>
-        <strong>Estado:</strong> {estado}
-      </p>
-      <button className="boton_eliminar" onClick={() => onEliminar(id)}>
-        Eliminar
-      </button>
-      <button className="boton_detalle" onClick={onVerDetalle}>
+    <Card className="proyecto mb-3">
+      <Card.Body>
+        <Card.Title>{titulo}</Card.Title>
+        <Card.Text>
+          <strong>Categoría:</strong> {categoria}
+        </Card.Text>
+        <Card.Text>
+          <strong>Estado:</strong> {estado}
+        </Card.Text>
+        <Button className="me-2" variant="danger" onClick={() => onEliminar(id)}>
+          Eliminar
+        </Button>
+        <Button variant="primary" onClick={onVerDetalle}>
         Ver detalle
-      </button>
-    </div>
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 
