@@ -1,35 +1,34 @@
-const Nav = ({ onNavigate }) => {
+import { NavLink } from "react-router-dom";
+
+const Nav = () => {
   return (
     <nav>
-      <a
-        href="#inicio"
-        onClick={(e) => {
-          e.preventDefault();
-          onNavigate("inicio");
-        }}
-      >
-        Inicio
-      </a>{" "}
-      |{" "}
-      <a
-        href="#proyectos"
-        onClick={(e) => {
-          e.preventDefault();
-          onNavigate("proyectos");
-        }}
-      >
-        Proyectos
-      </a>{" "}
-      |{" "}
-      <a
-        href="#perfil"
-        onClick={(e) => {
-          e.preventDefault();
-          onNavigate("perfil");
-        }}
-      >
-        Perfil
-      </a>
+      <ul>
+        <li>
+          <NavLink 
+            to="/listaproyectos" 
+            className={({ isActive }) => (isActive ? "activo" : "")}
+          >
+            Inicio
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/proyectos" 
+            className={({ isActive }) => (isActive ? "activo" : "")}
+          >
+            Proyectos
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            to="/perfil" 
+            className={({ isActive }) => (isActive ? "activo" : "")}
+          >
+            Perfil
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 };
