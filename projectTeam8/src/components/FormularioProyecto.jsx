@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const FormularioProyecto = ({ onAgregar }) => {
   const [formData, setFormData] = useState({
@@ -45,14 +47,15 @@ const FormularioProyecto = ({ onAgregar }) => {
   return (
     <form className="formulario-proyecto" onSubmit={handleSubmit}>
       <h3>Agregar Nuevo Proyecto</h3>
-      <input
+      <Form.Control
+        type="text"
         name="titulo"
         value={formData.titulo}
         onChange={handleChange}
         placeholder="Título"
         required
       />
-      <select
+      <Form.Select
         name="categoria"
         value={formData.categoria}
         onChange={handleChange}
@@ -62,19 +65,23 @@ const FormularioProyecto = ({ onAgregar }) => {
         <option value="Humanidades">Humanidades</option>
         <option value="Tecnología">Tecnología</option>
         <option value="Ciencias Naturales">Ciencias Naturales</option>
-      </select>
-      <select name="estado" value={formData.estado} onChange={handleChange}>
+      </Form.Select>
+      <Form.Select name="estado" value={formData.estado} onChange={handleChange}>
         <option value="Pendiente">Pendiente</option>
         <option value="En curso">En curso</option>
         <option value="Finalizado">Finalizado</option>
-      </select>
-      <textarea
+      </Form.Select>
+      <Form.Control
+        as="textarea"
+        rows={3}
         name="descripcion"
         value={formData.descripcion}
         onChange={handleChange}
         placeholder="Descripción"
       />
-      <button type="submit">Agregar Proyecto</button>
+      <Button variant="primary" type="submit">
+        Agregar Proyecto
+      </Button>
     </form>
   );
 };

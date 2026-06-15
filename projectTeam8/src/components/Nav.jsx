@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { NavLink } from "react-router-dom";
 
 const Nav = () => {
@@ -29,6 +30,16 @@ const Nav = () => {
           </NavLink>
         </li>
       </ul>
+=======
+import { Link } from "react-router-dom";
+
+const Nav = () => {
+  return (
+    <nav className="navegacion">
+      <Link to="/dashboard">Inicio</Link> {" | "}
+      <Link to="/proyectos">Proyectos</Link> {" | "}
+      <Link to="/perfil">Perfil</Link>
+>>>>>>> 2be4f96d7582d55ecf8997dfeec6d56f7151f3ac
     </nav>
   );
 };

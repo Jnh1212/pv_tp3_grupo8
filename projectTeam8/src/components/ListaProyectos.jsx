@@ -2,9 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import proyectoService from "../services/proyectoService";
 import ProyectoCard from "./ProyectoCard";
 import RegistroActividad from "./RegistroActividad";
-proyectoService.obtenerProyectos();
 import DetalleProyecto from "./DetalleProyecto";
 import FormularioProyecto from "./FormularioProyecto";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 
 const ListaProyectos = () => {
   const [proyectos, setProyectos] = useState(
@@ -64,33 +67,33 @@ const ListaProyectos = () => {
   }
 
   return (
-    <main>
+    <Container className="mt-4">
       <h2 className="titulo">Lista de Proyectos </h2>
-      <div className="controles">
-        <input
+      <Form.Control
           type="text"
           placeholder="Buscar proyecto..."
           value={busqueda}
           onChange={handleBusquedaChange}
-        />
-      </div>
+          className="mb-3"
+      />
 
       <FormularioProyecto onAgregar={handleAgregar} />
 
-      <div className="presentacion">
+      <Row>
         {proyectosFiltrados.map((proy) => (
-          <ProyectoCard
-            key={proy.id}
-            proyecto={proy}
-            onEliminar={eliminarProyecto}
-            onVerDetalle={() => verDetalle(proy)}
-          />
+          <Col md={4} key={proy.id}>
+            <ProyectoCard
+              proyecto={proy}
+              onEliminar={eliminarProyecto}
+              onVerDetalle={() => verDetalle(proy)}
+            />
+          </Col>
         ))}
-      </div>
+      </Row>
       {ultimaActualizacion && (
         <RegistroActividad fechaHora={ultimaActualizacion} />
       )}
-    </main>
+    </Container>
   );
 };
 
